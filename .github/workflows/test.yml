@@ -13,5 +13,8 @@ jobs:
         command:
           - go test .
           - go run .
+    defaults:
+      run:
+        working-directory: ${{ startsWith(matrix.command, 'go') && 'go' || '.' }}
     steps:
       - run: ${{ matrix.command }}
