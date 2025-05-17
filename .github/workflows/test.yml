@@ -17,4 +17,5 @@ jobs:
       run:
         working-directory: ${{ startsWith(matrix.command, 'go') && 'go' || '.' }}
     steps:
+      - uses: actions/checkout@v4
       - run: ${{ matrix.command }}
