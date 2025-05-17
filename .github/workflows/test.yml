@@ -4,18 +4,27 @@ on:
       - main
 
 jobs:
-  test:
+  go:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        command:
-          - go test .
-          - go run .
+
     defaults:
       run:
-        working-directory: ${{ startsWith(matrix.command, 'go') && 'go' || '.' }}
+        working-directory: go
     steps:
       - uses: actions/checkout@v4
-      - run: ${{ matrix.command }}
+      - run: go test .
+      - run: go run .
+
+  rust:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo test
+      - run: cargo run
+
