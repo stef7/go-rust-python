@@ -1,9 +1,12 @@
 import unittest
 import series
+import json
 
 class TestSeries(unittest.TestCase):
-    def test_hello(self):
-        self.assertEqual(series.hello(), "Hello, world!")
+    def test_get_users(self):
+        expected = '[{"name": "Alice", "age": 34, "active": true, "lastLogin": "2023-12-01T10:30:00Z", "children": [{"name": "Bob", "age": 29, "active": true, "lastLogin": "2023-11-15T08:15:00Z", "children": []}, {"name": "Carol", "age": 38, "active": false, "lastLogin": "2023-10-20T18:00:00Z", "children": []}]}, {"name": "Dave", "age": 45, "active": true, "lastLogin": "2023-11-20T17:45:00Z", "children": []}, {"name": "Eve", "age": 28, "active": true, "lastLogin": "2024-01-10T09:00:00Z", "children": [{"name": "Frank", "age": 31, "active": true, "lastLogin": "2024-01-12T11:30:00Z", "children": [{"name": "Grace", "age": 27, "active": false, "lastLogin": "2023-09-25T16:45:00Z", "children": []}]}]}, {"name": "Heidi", "age": 50, "active": false, "lastLogin": "2022-06-30T12:00:00Z", "children": []}]'
+        returned = json.dumps(series.get_users())
+        self.assertEqual(expected, returned)
 
 if __name__ == "__main__":
     unittest.main()
