@@ -1,13 +1,12 @@
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
   go:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     defaults:
       run:
         working-directory: go
@@ -19,7 +18,6 @@ jobs:
   rust:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     defaults:
       run:
         working-directory: rust
@@ -28,3 +26,13 @@ jobs:
       - run: cargo test
       - run: cargo run
 
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest
+      - run: python3 .
